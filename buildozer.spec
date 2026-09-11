@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,atlas,html,js,css
 
 version = 1.0.0
 
-requirements = python3,kivy==2.3.1,requests,android,plyer,pyjnius
+requirements = python3,kivy==2.3.1,requests,android,plyer
 
 orientation = portrait
 fullscreen = 0
