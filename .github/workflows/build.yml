@@ -42,7 +42,6 @@ jobs:
           echo "=== Repo files ==="
           ls -la
           test -f main.py && echo "main.py OK" || echo "main.py MISSING"
-          test -f panel.html && echo "panel.html OK" || echo "panel.html MISSING"
 
       - name: Build APK
         run: |
