@@ -4,11 +4,11 @@ package.name = vippanel
 package.domain = org.vip
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,html,js,css
+source.include_exts = py,png,jpg,kv,atlas
 
 version = 1.0.0
 
-requirements = python3,kivy==2.3.1,requests,android,plyer
+requirements = python3,kivy==2.3.1,requests,android,plyer,pyjnius
 
 orientation = portrait
 fullscreen = 0
